@@ -7,12 +7,23 @@ on:
     branches: [ "main" ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
+
+    - name: Determine Docker tag
+      id: docker_tag
+      run: |
+        if [ "$GITHUB_EVENT_NAME" == "pull_request" ]; then
+          echo "TAG=$(echo $GITHUB_HEAD_REF | tr / -)" >> $GITHUB_OUTPUT
+        else
+          echo "TAG=latest" >> $GITHUB_OUTPUT
+        fi
+
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag nicolas-partoches:$(date +%s)
+      run: docker build . --file Dockerfile --tag nicolas-partoches:${{ steps.docker_tag.outputs.TAG }}
+
+    - name: List Docker images (debugging)
+      run: docker images
