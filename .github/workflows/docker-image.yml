@@ -54,8 +54,8 @@ jobs:
     - name: Install Scaleway CLI
       run: |
         curl -Lo scw https://github.com/scaleway/scaleway-cli/releases/download/v2.20.0/scw-2.20.0-linux-x86_64
-        chmod +x scw
-        sudo mv scw /usr/local/bin/
+        # chmod +x scw
+        # sudo mv scw /usr/local/bin/
 
     - name: Redeploy Serverless Container
       env:
