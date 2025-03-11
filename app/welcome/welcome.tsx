@@ -1,7 +1,7 @@
 export function Welcome() {
     return (
         <main>
-            <h1>Nicolas Dross - Partoches 2</h1>
+            <h1>Nicolas Dross - Partoches</h1>
         </main>
     )
 }
