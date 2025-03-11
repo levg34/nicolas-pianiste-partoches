@@ -34,11 +34,11 @@ jobs:
 
     - name: Tag the Docker image for Scaleway
       run: |
-        docker tag nicolas-partoches:${{ steps.docker_tag.outputs.TAG }} rg.fr-par.scw.cloud/your-namespace/nicolas-partoches:${{ steps.docker_tag.outputs.TAG }}
+        docker tag nicolas-partoches:${{ steps.docker_tag.outputs.TAG }} rg.fr-par.scw.cloud/nicolas-pianiste/nicolas-partoches:${{ steps.docker_tag.outputs.TAG }}
 
     - name: Push the Docker image to Scaleway
       run: |
-        docker push rg.fr-par.scw.cloud/your-namespace/nicolas-partoches:${{ steps.docker_tag.outputs.TAG }}
+        docker push rg.fr-par.scw.cloud/nicolas-pianiste/nicolas-partoches:${{ steps.docker_tag.outputs.TAG }}
 
     - name: Output Docker tag
       id: output_tag
@@ -63,11 +63,11 @@ jobs:
         SCW_SECRET_KEY: ${{ secrets.SCW_SECRET_KEY }}
       run: |
         scw init secret-key="$SCW_SECRET_KEY" access-key="$SCW_ACCESS_KEY"
-        scw container deploy <container-id> image=rg.fr-par.scw.cloud/your-namespace/nicolas-partoches:${{ needs.build.outputs.output_tag.TAG }}
+        scw container deploy 22a33a10-edcb-4687-9213-f01f0b003284 image=rg.fr-par.scw.cloud/nicolas-pianiste/nicolas-partoches:${{ needs.build.outputs.output_tag.TAG }}
 
     - name: Wait for Serverless Container to be ready (with timeout)
       env:
         SCW_ACCESS_KEY: ${{ secrets.SCW_ACCESS_KEY }}
         SCW_SECRET_KEY: ${{ secrets.SCW_SECRET_KEY }}
       run: |
-        timeout 300 scw container wait <container-id> state=ready || echo "::warning::Container did not become ready within the timeout period."
+        timeout 300 scw container wait 22a33a10-edcb-4687-9213-f01f0b003284 state=ready || echo "::warning::Container did not become ready within the timeout period."
