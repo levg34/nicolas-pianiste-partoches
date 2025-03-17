@@ -4,11 +4,26 @@ interface ScoreCardProps {
     title: string
     instrument: string
     price: string
+    bg?: string
+    textColor?: string
 }
 
-const ScoreCard = ({ title, instrument, price }: ScoreCardProps) => {
+const ScoreCard = ({ title, instrument, price, bg, textColor }: ScoreCardProps) => {
     return (
-        <VStack bg="white" p={6} borderRadius="md" boxShadow="md" align="stretch" gap={4}>
+        <VStack
+            bg={bg}
+            color={textColor}
+            p={6}
+            borderRadius="md"
+            boxShadow="md"
+            align="stretch"
+            gap={4}
+            transition="all 0.2s"
+            _hover={{
+                transform: 'translateY(-4px)',
+                boxShadow: 'lg'
+            }}
+        >
             <Image
                 src="https://www.imusic-school.com/wp-content/uploads/2019/08/Nocturne-N%C2%B021-Chopin-partition-piano.png"
                 alt={title}
