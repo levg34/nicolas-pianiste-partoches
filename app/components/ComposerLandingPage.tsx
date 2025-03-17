@@ -22,7 +22,7 @@ const ComposerLandingPage = () => {
             <Box bg="blue.50" py={20}>
                 <Container maxW="container.xl">
                     <Flex direction={{ base: 'column', md: 'row' }} align="center" justify="space-between">
-                        <VStack align="flex-start" spacing={6} maxW="500px">
+                        <VStack align="flex-start" gap={6} maxW="500px">
                             <Heading size="2xl">Compositions originales de Nicolas Dross</Heading>
                             <Text fontSize="xl">
                                 Découvrez et achetez des partitions uniques directement du compositeur
@@ -45,7 +45,7 @@ const ComposerLandingPage = () => {
             {/* Expertise Section */}
             <Box py={20}>
                 <Container maxW="container.xl">
-                    <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
+                    <SimpleGrid columns={{ base: 1, md: 3 }} gap={10}>
                         <ExpertiseCard
                             icon={FaMusic}
                             title="Pianiste"
@@ -68,9 +68,9 @@ const ComposerLandingPage = () => {
             {/* Featured Compositions */}
             <Box bg="gray.50" py={20}>
                 <Container maxW="container.xl">
-                    <VStack spacing={12}>
+                    <VStack gap={12}>
                         <Heading size="xl">Compositions en vedette</Heading>
-                        <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
+                        <SimpleGrid columns={{ base: 1, md: 3 }} gap={10}>
                             <ScoreCard title="Piano Orchestra" instrument="Piano" price="24,99 €" />
                             <ScoreCard title="Mélodie pour voix et piano" instrument="Voix et Piano" price="19,99 €" />
                             <ScoreCard title="Quatuor à cordes No. 1" instrument="Quatuor à cordes" price="39,99 €" />
@@ -85,7 +85,7 @@ const ComposerLandingPage = () => {
             {/* About Section */}
             <Box py={20}>
                 <Container maxW="container.xl">
-                    <VStack spacing={8} align="center" textAlign="center">
+                    <VStack gap={8} align="center" textAlign="center">
                         <Heading size="xl">À propos de Nicolas Dross</Heading>
                         <Text fontSize="lg" maxW="800px">
                             Pianiste, compositeur, arrangeur et enseignant, Nicolas Dross est un artiste curieux et
@@ -93,7 +93,7 @@ const ComposerLandingPage = () => {
                             enseigne le piano en région parisienne.
                         </Text>
                         <Link href="https://nicolasdross.fr">
-                            <Button variant="link" colorScheme="blue">
+                            <Button variant="ghost" colorScheme="blue" textDecoration="underline">
                                 En savoir plus sur Nicolas Dross
                             </Button>
                         </Link>
@@ -111,7 +111,7 @@ const ComposerLandingPage = () => {
     )
 }
 
-const ExpertiseCard = ({ icon, title, text }) => {
+const ExpertiseCard = ({ icon, title, text }: any) => {
     return (
         <VStack align="center" textAlign="center" p={6} bg="white" borderRadius="md" boxShadow="md">
             <Icon as={icon} w={10} h={10} color="blue.500" />
@@ -121,9 +121,9 @@ const ExpertiseCard = ({ icon, title, text }) => {
     )
 }
 
-const ScoreCard = ({ title, instrument, price }) => {
+const ScoreCard = ({ title, instrument, price }: any) => {
     return (
-        <VStack bg="white" p={6} borderRadius="md" boxShadow="md" align="stretch" spacing={4}>
+        <VStack bg="white" p={6} borderRadius="md" boxShadow="md" align="stretch" gap={4}>
             <Image
                 src="https://www.imusic-school.com/wp-content/uploads/2019/08/Nocturne-N%C2%B021-Chopin-partition-piano.png"
                 alt={title}
