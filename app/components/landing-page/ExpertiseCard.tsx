@@ -4,8 +4,8 @@ interface ExpertiseCardProps {
     icon: React.ElementType
     title: string
     text: string
-    bg: string
-    color: string
+    bg?: string
+    color?: string
 }
 
 const ExpertiseCard = ({ icon, title, text, bg, color }: ExpertiseCardProps) => {
