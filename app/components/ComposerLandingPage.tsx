@@ -151,7 +151,12 @@ const ComposerLandingPage = () => {
             </Box>
 
             {/* Footer */}
-            <Box as="footer" bg="blue.700" color="white" py={10}>
+            <Box
+                as="footer"
+                bg={useColorModeValue('blue.700', 'gray.900')}
+                color={useColorModeValue('white', 'whiteAlpha.900')}
+                py={10}
+            >
                 <Container maxW="container.xl">
                     <Text textAlign="center">
                         &copy; {new Date().getFullYear()} Nicolas Dross. Tous droits réservés.
