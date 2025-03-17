@@ -1,15 +1,18 @@
-import { Box, Button, Container, Flex, Heading, Text, VStack, Image, SimpleGrid, Link } from '@chakra-ui/react'
+import { Box, Button, Container, Flex, Heading, Text, VStack, Image, SimpleGrid, Link, Icon } from '@chakra-ui/react'
+import { FaMusic, FaPen, FaChalkboardTeacher } from 'react-icons/fa'
 
 const ComposerLandingPage = () => {
     return (
         <Box>
             {/* Header */}
-            <Box as="header" bg="gray.50" py={4}>
+            <Box as="header" bg="blue.700" color="white" py={4}>
                 <Container maxW="container.xl">
                     <Flex justify="space-between" align="center">
-                        <Heading size="lg">Nicolas Dross - Scores</Heading>
+                        <Heading size="lg">Nicolas Dross - Partitions</Heading>
                         <Link href="https://nicolasdross.fr">
-                            <Button variant="outline">Visit Main Website</Button>
+                            <Button variant="outline" colorScheme="whiteAlpha">
+                                Site principal
+                            </Button>
                         </Link>
                     </Flex>
                 </Container>
@@ -20,12 +23,12 @@ const ComposerLandingPage = () => {
                 <Container maxW="container.xl">
                     <Flex direction={{ base: 'column', md: 'row' }} align="center" justify="space-between">
                         <VStack align="flex-start" spacing={6} maxW="500px">
-                            <Heading size="2xl">Exclusive Scores by Nicolas Dross</Heading>
+                            <Heading size="2xl">Compositions originales de Nicolas Dross</Heading>
                             <Text fontSize="xl">
-                                Discover and purchase original compositions directly from the composer
+                                Découvrez et achetez des partitions uniques directement du compositeur
                             </Text>
                             <Button size="lg" colorScheme="blue">
-                                Browse Scores
+                                Parcourir les partitions
                             </Button>
                         </VStack>
                         <Image
@@ -39,36 +42,59 @@ const ComposerLandingPage = () => {
                 </Container>
             </Box>
 
-            {/* Featured Scores */}
+            {/* Expertise Section */}
             <Box py={20}>
                 <Container maxW="container.xl">
+                    <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
+                        <ExpertiseCard
+                            icon={FaMusic}
+                            title="Pianiste"
+                            text="Formé au Conservatoire National de Paris"
+                        />
+                        <ExpertiseCard
+                            icon={FaPen}
+                            title="Compositeur & Arrangeur"
+                            text="Créations originales et arrangements innovants"
+                        />
+                        <ExpertiseCard
+                            icon={FaChalkboardTeacher}
+                            title="Enseignant"
+                            text="Partage sa passion et son expertise"
+                        />
+                    </SimpleGrid>
+                </Container>
+            </Box>
+
+            {/* Featured Compositions */}
+            <Box bg="gray.50" py={20}>
+                <Container maxW="container.xl">
                     <VStack spacing={12}>
-                        <Heading size="xl">Featured Compositions</Heading>
+                        <Heading size="xl">Compositions en vedette</Heading>
                         <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
-                            <ScoreCard title="Sonata No. 1" instrument="Piano" price="24€99" />
-                            <ScoreCard title="String Quartet in G" instrument="String Quartet" price="39€99" />
-                            <ScoreCard title="Nocturne in B-flat" instrument="Piano" price="19€99" />
+                            <ScoreCard title="Piano Orchestra" instrument="Piano" price="24,99 €" />
+                            <ScoreCard title="Mélodie pour voix et piano" instrument="Voix et Piano" price="19,99 €" />
+                            <ScoreCard title="Quatuor à cordes No. 1" instrument="Quatuor à cordes" price="39,99 €" />
                         </SimpleGrid>
                         <Button size="lg" variant="outline" colorScheme="blue">
-                            View All Scores
+                            Voir toutes les partitions
                         </Button>
                     </VStack>
                 </Container>
             </Box>
 
             {/* About Section */}
-            <Box bg="gray.50" py={20}>
+            <Box py={20}>
                 <Container maxW="container.xl">
                     <VStack spacing={8} align="center" textAlign="center">
-                        <Heading size="xl">About Nicolas Dross</Heading>
+                        <Heading size="xl">À propos de Nicolas Dross</Heading>
                         <Text fontSize="lg" maxW="800px">
-                            Nicolas Dross is an award-winning composer known for his emotive and innovative works. With
-                            a career spanning over two decades, Nicolas has composed for orchestras, chamber ensembles,
-                            and soloists worldwide.
+                            Pianiste, compositeur, arrangeur et enseignant, Nicolas Dross est un artiste curieux et
+                            polyvalent. Formé au Conservatoire National de Paris, il compose pour ses amis proches et
+                            enseigne le piano en région parisienne.
                         </Text>
                         <Link href="https://nicolasdross.fr">
                             <Button variant="link" colorScheme="blue">
-                                Learn more about Nicolas Dross
+                                En savoir plus sur Nicolas Dross
                             </Button>
                         </Link>
                     </VStack>
@@ -76,12 +102,22 @@ const ComposerLandingPage = () => {
             </Box>
 
             {/* Footer */}
-            <Box as="footer" bg="gray.100" py={10}>
+            <Box as="footer" bg="blue.700" color="white" py={10}>
                 <Container maxW="container.xl">
-                    <Text textAlign="center">&copy; 2025 Nicolas Dross. All rights reserved.</Text>
+                    <Text textAlign="center">&copy; 2025 Nicolas Dross. Tous droits réservés.</Text>
                 </Container>
             </Box>
         </Box>
+    )
+}
+
+const ExpertiseCard = ({ icon, title, text }) => {
+    return (
+        <VStack align="center" textAlign="center" p={6} bg="white" borderRadius="md" boxShadow="md">
+            <Icon as={icon} w={10} h={10} color="blue.500" />
+            <Heading size="md">{title}</Heading>
+            <Text>{text}</Text>
+        </VStack>
     )
 }
 
@@ -96,7 +132,7 @@ const ScoreCard = ({ title, instrument, price }) => {
             <Heading size="md">{title}</Heading>
             <Text>{instrument}</Text>
             <Text fontWeight="bold">{price}</Text>
-            <Button colorScheme="blue">Purchase</Button>
+            <Button colorScheme="blue">Acheter</Button>
         </VStack>
     )
 }
