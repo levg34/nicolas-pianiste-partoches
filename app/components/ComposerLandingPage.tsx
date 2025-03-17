@@ -1,5 +1,7 @@
-import { Box, Button, Container, Flex, Heading, Text, VStack, Image, SimpleGrid, Link, Icon } from '@chakra-ui/react'
+import { Box, Button, Container, Flex, Heading, Text, VStack, Image, SimpleGrid, Link } from '@chakra-ui/react'
 import { FaMusic, FaPen, FaChalkboardTeacher } from 'react-icons/fa'
+import ExpertiseCard from './landing-page/ExpertiseCard'
+import ScoreCard from './landing-page/ScoreCard'
 
 const ComposerLandingPage = () => {
     return (
@@ -104,36 +106,12 @@ const ComposerLandingPage = () => {
             {/* Footer */}
             <Box as="footer" bg="blue.700" color="white" py={10}>
                 <Container maxW="container.xl">
-                    <Text textAlign="center">&copy; 2025 Nicolas Dross. Tous droits réservés.</Text>
+                    <Text textAlign="center">
+                        &copy; {new Date().getFullYear()} Nicolas Dross. Tous droits réservés.
+                    </Text>
                 </Container>
             </Box>
         </Box>
-    )
-}
-
-const ExpertiseCard = ({ icon, title, text }: any) => {
-    return (
-        <VStack align="center" textAlign="center" p={6} bg="white" borderRadius="md" boxShadow="md">
-            <Icon as={icon} w={10} h={10} color="blue.500" />
-            <Heading size="md">{title}</Heading>
-            <Text>{text}</Text>
-        </VStack>
-    )
-}
-
-const ScoreCard = ({ title, instrument, price }: any) => {
-    return (
-        <VStack bg="white" p={6} borderRadius="md" boxShadow="md" align="stretch" gap={4}>
-            <Image
-                src="https://www.imusic-school.com/wp-content/uploads/2019/08/Nocturne-N%C2%B021-Chopin-partition-piano.png"
-                alt={title}
-                borderRadius="md"
-            />
-            <Heading size="md">{title}</Heading>
-            <Text>{instrument}</Text>
-            <Text fontWeight="bold">{price}</Text>
-            <Button colorScheme="blue">Acheter</Button>
-        </VStack>
     )
 }
 
