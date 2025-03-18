@@ -35,6 +35,24 @@ const ComposerLandingPage = () => {
 
     const displayedScores = showAllScores ? allScores : allScores.slice(0, 3)
 
+    const expertiseData = [
+        {
+            icon: FaMusic,
+            title: 'Pianiste',
+            text: 'Formé au Conservatoire National de Paris'
+        },
+        {
+            icon: FaPen,
+            title: 'Compositeur & Arrangeur',
+            text: 'Créations originales et arrangements innovants'
+        },
+        {
+            icon: FaChalkboardTeacher,
+            title: 'Enseignant',
+            text: 'Partage sa passion et son expertise'
+        }
+    ]
+
     return (
         <Box>
             {/* Header */}
@@ -82,27 +100,16 @@ const ComposerLandingPage = () => {
             <Box py={20} bg={useColorModeValue('white', 'gray.900')}>
                 <Container maxW="container.xl">
                     <SimpleGrid columns={{ base: 1, md: 3 }} gap={10}>
-                        <ExpertiseCard
-                            bg={cardBg}
-                            color={textColor}
-                            icon={FaMusic}
-                            title="Pianiste"
-                            text="Formé au Conservatoire National de Paris"
-                        />
-                        <ExpertiseCard
-                            bg={cardBg}
-                            color={textColor}
-                            icon={FaPen}
-                            title="Compositeur & Arrangeur"
-                            text="Créations originales et arrangements innovants"
-                        />
-                        <ExpertiseCard
-                            bg={cardBg}
-                            color={textColor}
-                            icon={FaChalkboardTeacher}
-                            title="Enseignant"
-                            text="Partage sa passion et son expertise"
-                        />
+                        {expertiseData.map((expertise, index) => (
+                            <ExpertiseCard
+                                key={index}
+                                bg={cardBg}
+                                color={textColor}
+                                icon={expertise.icon}
+                                title={expertise.title}
+                                text={expertise.text}
+                            />
+                        ))}
                     </SimpleGrid>
                 </Container>
             </Box>
