@@ -3,7 +3,7 @@ import { FaMusic, FaPen, FaChalkboardTeacher } from 'react-icons/fa'
 import ExpertiseCard from './landing-page/ExpertiseCard'
 import ScoreCard from './landing-page/ScoreCard'
 import { useColorModeValue, ColorModeButton } from './ui/color-mode'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 
 const ComposerLandingPage = () => {
     const featuredCompositionsRef = useRef<HTMLDivElement>(null)
@@ -15,6 +15,25 @@ const ComposerLandingPage = () => {
     const scrollToFeaturedCompositions = () => {
         featuredCompositionsRef.current?.scrollIntoView({ behavior: 'smooth' })
     }
+
+    const allScores = [
+        { title: 'Piano Orchestra', instrument: 'Piano', price: '24,99 €' },
+        { title: 'Mélodie pour voix et piano', instrument: 'Voix et Piano', price: '19,99 €' },
+        { title: 'Quatuor à cordes No. 1', instrument: 'Quatuor à cordes', price: '39,99 €' },
+        { title: 'Sonate pour violon', instrument: 'Violon', price: '29,99 €' },
+        { title: 'Concerto pour flûte', instrument: 'Flûte', price: '34,99 €' },
+        { title: 'Suite pour violoncelle', instrument: 'Violoncelle', price: '27,99 €' },
+        { title: 'Trio pour piano', instrument: 'Piano Trio', price: '44,99 €' },
+        { title: 'Symphonie No. 1', instrument: 'Orchestre', price: '59,99 €' },
+        { title: 'Nocturne pour harpe', instrument: 'Harpe', price: '22,99 €' },
+        { title: 'Quintette à vent', instrument: 'Ensemble à vent', price: '49,99 €' },
+        { title: 'Étude pour guitare', instrument: 'Guitare', price: '17,99 €' },
+        { title: 'Rhapsodie pour clarinette', instrument: 'Clarinette', price: '26,99 €' }
+    ]
+
+    const [showAllScores, setShowAllScores] = useState(false)
+
+    const displayedScores = showAllScores ? allScores : allScores.slice(0, 3)
 
     return (
         <Box>
@@ -97,41 +116,33 @@ const ComposerLandingPage = () => {
                         </Heading>
 
                         <SimpleGrid columns={{ base: 1, md: 3 }} gap={10}>
-                            <ScoreCard
-                                title="Piano Orchestra"
-                                instrument="Piano"
-                                price="24,99 €"
-                                bg={useColorModeValue('white', 'gray.700')}
-                                textColor={useColorModeValue('gray.800', 'whiteAlpha.900')}
-                            />
-                            <ScoreCard
-                                title="Mélodie pour voix et piano"
-                                instrument="Voix et Piano"
-                                price="19,99 €"
-                                bg={useColorModeValue('white', 'gray.700')}
-                                textColor={useColorModeValue('gray.800', 'whiteAlpha.900')}
-                            />
-                            <ScoreCard
-                                title="Quatuor à cordes No. 1"
-                                instrument="Quatuor à cordes"
-                                price="39,99 €"
-                                bg={useColorModeValue('white', 'gray.700')}
-                                textColor={useColorModeValue('gray.800', 'whiteAlpha.900')}
-                            />
+                            {displayedScores.map((score, index) => (
+                                <ScoreCard
+                                    key={index}
+                                    title={score.title}
+                                    instrument={score.instrument}
+                                    price={score.price}
+                                    bg={useColorModeValue('white', 'gray.700')}
+                                    textColor={useColorModeValue('gray.800', 'whiteAlpha.900')}
+                                />
+                            ))}
                         </SimpleGrid>
 
-                        <Button
-                            size="lg"
-                            variant="outline"
-                            colorScheme="blue"
-                            borderColor={useColorModeValue('blue.500', 'blue.200')}
-                            color={useColorModeValue('blue.600', 'blue.200')}
-                            _hover={{
-                                bg: useColorModeValue('blue.50', 'whiteAlpha.100')
-                            }}
-                        >
-                            Voir toutes les partitions
-                        </Button>
+                        {!showAllScores && (
+                            <Button
+                                size="lg"
+                                variant="outline"
+                                colorScheme="blue"
+                                borderColor={useColorModeValue('blue.500', 'blue.200')}
+                                color={useColorModeValue('blue.600', 'blue.200')}
+                                _hover={{
+                                    bg: useColorModeValue('blue.50', 'whiteAlpha.100')
+                                }}
+                                onClick={() => setShowAllScores(true)}
+                            >
+                                Voir toutes les partitions
+                            </Button>
+                        )}
                     </VStack>
                 </Container>
             </Box>
