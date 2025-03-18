@@ -3,11 +3,18 @@ import { FaMusic, FaPen, FaChalkboardTeacher } from 'react-icons/fa'
 import ExpertiseCard from './landing-page/ExpertiseCard'
 import ScoreCard from './landing-page/ScoreCard'
 import { useColorModeValue, ColorModeButton } from './ui/color-mode'
+import { useRef } from 'react'
 
 const ComposerLandingPage = () => {
+    const featuredCompositionsRef = useRef<HTMLDivElement>(null)
+
     const heroBg = useColorModeValue('blue.50', 'gray.800')
     const cardBg = useColorModeValue('white', 'gray.700')
     const textColor = useColorModeValue('gray.800', 'whiteAlpha.900')
+
+    const scrollToFeaturedCompositions = () => {
+        featuredCompositionsRef.current?.scrollIntoView({ behavior: 'smooth' })
+    }
 
     return (
         <Box>
@@ -37,7 +44,7 @@ const ComposerLandingPage = () => {
                             <Text fontSize="xl">
                                 Découvrez et achetez des partitions uniques directement du compositeur
                             </Text>
-                            <Button size="lg" colorScheme="blue">
+                            <Button size="lg" colorScheme="blue" onClick={scrollToFeaturedCompositions}>
                                 Parcourir les partitions
                             </Button>
                         </VStack>
@@ -82,7 +89,7 @@ const ComposerLandingPage = () => {
             </Box>
 
             {/* Featured Compositions */}
-            <Box bg={useColorModeValue('gray.50', 'gray.800')} py={20}>
+            <Box bg={useColorModeValue('gray.50', 'gray.800')} py={20} ref={featuredCompositionsRef}>
                 <Container maxW="container.xl">
                     <VStack gap={12}>
                         <Heading size="xl" color={useColorModeValue('gray.800', 'whiteAlpha.900')}>
