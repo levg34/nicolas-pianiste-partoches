@@ -1,12 +1,10 @@
-import { Box, Button, Container, Flex, Heading, Text, VStack, Image, SimpleGrid, Link, Switch } from '@chakra-ui/react'
+import { Box, Button, Container, Flex, Heading, Text, VStack, Image, SimpleGrid, Link } from '@chakra-ui/react'
 import { FaMusic, FaPen, FaChalkboardTeacher } from 'react-icons/fa'
 import ExpertiseCard from './landing-page/ExpertiseCard'
 import ScoreCard from './landing-page/ScoreCard'
-import { useColorMode, useColorModeValue, ColorModeButton } from './ui/color-mode'
+import { useColorModeValue, ColorModeButton } from './ui/color-mode'
 
 const ComposerLandingPage = () => {
-    const { toggleColorMode } = useColorMode()
-
     const heroBg = useColorModeValue('blue.50', 'gray.800')
     const cardBg = useColorModeValue('white', 'gray.700')
     const textColor = useColorModeValue('gray.800', 'whiteAlpha.900')
