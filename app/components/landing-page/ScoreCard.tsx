@@ -7,13 +7,14 @@ interface ScoreCardProps {
     title: string
     instrument: string
     price: string
-    bg?: string
-    textColor?: string
+    image: string
     pdfUrl?: string
     audioUrl?: string
+    bg?: string
+    textColor?: string
 }
 
-const ScoreCard = ({ title, instrument, price, bg, textColor, pdfUrl, audioUrl }: ScoreCardProps) => {
+const ScoreCard = ({ title, instrument, price, bg, textColor, pdfUrl, audioUrl, image }: ScoreCardProps) => {
     const [isPdfOpen, setIsPdfOpen] = useState(false)
     const [isAudioOpen, setIsAudioOpen] = useState(false)
 
@@ -32,11 +33,7 @@ const ScoreCard = ({ title, instrument, price, bg, textColor, pdfUrl, audioUrl }
                 boxShadow: 'lg'
             }}
         >
-            <Image
-                src="https://www.imusic-school.com/wp-content/uploads/2019/08/Nocturne-N%C2%B021-Chopin-partition-piano.png"
-                alt={title}
-                borderRadius="md"
-            />
+            <Image src={image} alt={title} borderRadius="md" />
             <Heading size="md">{title}</Heading>
             <Text>{instrument}</Text>
             <Text fontWeight="bold">{price}</Text>

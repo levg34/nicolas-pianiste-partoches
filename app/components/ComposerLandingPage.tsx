@@ -17,7 +17,14 @@ const ComposerLandingPage = () => {
     }
 
     const allScores = [
-        { title: 'Piano Orchestra', instrument: 'Piano', price: '24,99 €' },
+        {
+            title: 'Piano Orchestra',
+            instrument: 'Piano',
+            price: '24,99 €',
+            audioUrl: undefined,
+            pdfUrl: undefined,
+            image: undefined
+        },
         { title: 'Mélodie pour voix et piano', instrument: 'Voix et Piano', price: '19,99 €' },
         { title: 'Quatuor à cordes No. 1', instrument: 'Quatuor à cordes', price: '39,99 €' },
         { title: 'Sonate pour violon', instrument: 'Violon', price: '29,99 €' },
@@ -29,7 +36,10 @@ const ComposerLandingPage = () => {
         { title: 'Quintette à vent', instrument: 'Ensemble à vent', price: '49,99 €' },
         { title: 'Étude pour guitare', instrument: 'Guitare', price: '17,99 €' },
         { title: 'Rhapsodie pour clarinette', instrument: 'Clarinette', price: '26,99 €' }
-    ]
+    ].map((e) => ({
+        ...e,
+        image: 'https://www.imusic-school.com/wp-content/uploads/2019/08/Nocturne-N%C2%B021-Chopin-partition-piano.png'
+    }))
 
     const [showAllScores, setShowAllScores] = useState(false)
 
@@ -129,6 +139,9 @@ const ComposerLandingPage = () => {
                                     title={score.title}
                                     instrument={score.instrument}
                                     price={score.price}
+                                    audioUrl={score.audioUrl}
+                                    pdfUrl={score.pdfUrl}
+                                    image={score.image}
                                     bg={useColorModeValue('white', 'gray.700')}
                                     textColor={useColorModeValue('gray.800', 'whiteAlpha.900')}
                                 />
