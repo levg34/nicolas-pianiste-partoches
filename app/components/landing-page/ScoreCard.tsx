@@ -55,8 +55,7 @@ const ScoreCard = ({ title, instrument, price, bg, textColor, pdfUrl, audioUrl }
             </Button>
 
             {/* PDF Preview Dialog */}
-            {/* <Dialog.Root open={isPdfOpen} onClose={() => setIsPdfOpen(false)}>
-                <Dialog.Trigger asChild></Dialog.Trigger>
+            <Dialog.Root open={isPdfOpen}>
                 <Portal>
                     <Dialog.Backdrop />
                     <Dialog.Positioner>
@@ -76,11 +75,10 @@ const ScoreCard = ({ title, instrument, price, bg, textColor, pdfUrl, audioUrl }
                         </Dialog.Content>
                     </Dialog.Positioner>
                 </Portal>
-            </Dialog.Root> */}
+            </Dialog.Root>
 
             {/* Audio Preview Dialog */}
-            {/* <Dialog.Root open={isAudioOpen} onClose={() => setIsAudioOpen(false)}>
-                <Dialog.Trigger asChild></Dialog.Trigger>
+            <Dialog.Root open={isAudioOpen}>
                 <Portal>
                     <Dialog.Backdrop />
                     <Dialog.Positioner>
@@ -100,7 +98,7 @@ const ScoreCard = ({ title, instrument, price, bg, textColor, pdfUrl, audioUrl }
                         </Dialog.Content>
                     </Dialog.Positioner>
                 </Portal>
-            </Dialog.Root> */}
+            </Dialog.Root>
         </VStack>
     )
 }
