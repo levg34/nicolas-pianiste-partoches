@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Button, Heading, Text, VStack, Image, HStack, CloseButton, Portal } from '@chakra-ui/react'
 import { Dialog } from '@chakra-ui/react'
-import { FaFileAlt, FaPlay } from 'react-icons/fa'
+import { FaFileAlt, FaPlay, FaStop } from 'react-icons/fa'
 
 interface ScoreCardProps {
     title: string
@@ -45,11 +45,20 @@ const ScoreCard = ({ title, instrument, price, bg, textColor, pdfUrl, audioUrl }
                     <FaFileAlt />
                     Aperçu PDF
                 </Button>
-                <Button onClick={() => setIsAudioOpen(true)} disabled={!audioUrl}>
-                    <FaPlay />
-                    Écouter
+                <Button onClick={() => setIsAudioOpen((open) => !open)} disabled={!audioUrl}>
+                    {!isAudioOpen && (
+                        <>
+                            <FaPlay /> Écouter
+                        </>
+                    )}
+                    {isAudioOpen && (
+                        <>
+                            <FaStop /> Arrêter
+                        </>
+                    )}
                 </Button>
             </HStack>
+            {isAudioOpen && <audio controls src={audioUrl} style={{ width: '100%' }} />}
             <Button aria-label="Acheter la partition" colorScheme="blue">
                 Acheter
             </Button>
@@ -68,29 +77,6 @@ const ScoreCard = ({ title, instrument, price, bg, textColor, pdfUrl, audioUrl }
                             </Dialog.Body>
                             <Dialog.Footer>
                                 <Button onClick={() => setIsPdfOpen(false)}>Fermer</Button>
-                            </Dialog.Footer>
-                            <Dialog.CloseTrigger asChild>
-                                <CloseButton size="sm" />
-                            </Dialog.CloseTrigger>
-                        </Dialog.Content>
-                    </Dialog.Positioner>
-                </Portal>
-            </Dialog.Root>
-
-            {/* Audio Preview Dialog */}
-            <Dialog.Root open={isAudioOpen}>
-                <Portal>
-                    <Dialog.Backdrop />
-                    <Dialog.Positioner>
-                        <Dialog.Content>
-                            <Dialog.Header>
-                                <Dialog.Title>Extrait audio</Dialog.Title>
-                            </Dialog.Header>
-                            <Dialog.Body>
-                                <audio controls src={audioUrl} style={{ width: '100%' }} />
-                            </Dialog.Body>
-                            <Dialog.Footer>
-                                <Button onClick={() => setIsAudioOpen(false)}>Fermer</Button>
                             </Dialog.Footer>
                             <Dialog.CloseTrigger asChild>
                                 <CloseButton size="sm" />
