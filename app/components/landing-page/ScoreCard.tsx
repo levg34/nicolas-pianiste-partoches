@@ -46,19 +46,18 @@ const ScoreCard = ({ title, instrument, price, bg, textColor, pdfUrl, audioUrl }
                     Aperçu PDF
                 </Button>
                 <Button onClick={() => setIsAudioOpen((open) => !open)} disabled={!audioUrl}>
-                    {!isAudioOpen && (
+                    {!isAudioOpen ? (
                         <>
                             <FaPlay /> Écouter
                         </>
-                    )}
-                    {isAudioOpen && (
+                    ) : (
                         <>
                             <FaStop /> Arrêter
                         </>
                     )}
                 </Button>
             </HStack>
-            {isAudioOpen && <audio controls src={audioUrl} style={{ width: '100%' }} />}
+            {isAudioOpen && <audio controls src={audioUrl} style={{ width: '100%' }} autoPlay />}
             <Button aria-label="Acheter la partition" colorScheme="blue">
                 Acheter
             </Button>
