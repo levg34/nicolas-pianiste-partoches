@@ -64,22 +64,30 @@ const ScoreCard = ({ title, instrument, price, bg, textColor, pdfUrl, audioUrl }
             </Button>
 
             {/* PDF Preview Dialog */}
-            <Dialog.Root open={isPdfOpen}>
+            <Dialog.Root
+                open={isPdfOpen}
+                onEscapeKeyDown={() => setIsPdfOpen(false)}
+                onInteractOutside={() => setIsPdfOpen(false)}
+                unmountOnExit
+                size="cover"
+                placement="center"
+                motionPreset="slide-in-bottom"
+            >
                 <Portal>
                     <Dialog.Backdrop />
                     <Dialog.Positioner>
                         <Dialog.Content>
                             <Dialog.Header>
-                                <Dialog.Title>Aperçu de la partition</Dialog.Title>
+                                <Dialog.Title>Aperçu de la partition : {title}</Dialog.Title>
                             </Dialog.Header>
                             <Dialog.Body>
-                                <iframe src={pdfUrl} width="100%" height="500px" />
+                                <iframe src={pdfUrl} width="100%" height="100%" />
                             </Dialog.Body>
                             <Dialog.Footer>
                                 <Button onClick={() => setIsPdfOpen(false)}>Fermer</Button>
                             </Dialog.Footer>
                             <Dialog.CloseTrigger asChild>
-                                <CloseButton size="sm" />
+                                <CloseButton size="sm" onClick={() => setIsPdfOpen(false)} />
                             </Dialog.CloseTrigger>
                         </Dialog.Content>
                     </Dialog.Positioner>
