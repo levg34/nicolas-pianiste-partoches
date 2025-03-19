@@ -131,6 +131,8 @@ const ComposerLandingPage = () => {
                                     price={score.price}
                                     bg={useColorModeValue('white', 'gray.700')}
                                     textColor={useColorModeValue('gray.800', 'whiteAlpha.900')}
+                                    audioUrl="/scores/[Free-scores.com]_leonard-anderson-plays-inaccessible-etoile-from-poupart-taussat-damien-20150506012004.mp3"
+                                    pdfUrl="/scores/[Free-scores.com]_poupart-taussat-damien-039-inaccessible-toile-77572.pdf"
                                 />
                             ))}
                         </SimpleGrid>
