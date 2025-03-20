@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button, Heading, Text, VStack, Image, HStack, CloseButton, Portal } from '@chakra-ui/react'
+import { Button, Heading, Text, VStack, Image, HStack, CloseButton, Portal, Badge, AspectRatio } from '@chakra-ui/react'
 import { Dialog } from '@chakra-ui/react'
 import { FaFileAlt, FaPlay, FaStop } from 'react-icons/fa'
 import type { IScore } from '~/types/scores'
@@ -9,9 +9,27 @@ interface ScoreCardProps extends IScore {
     textColor?: string
 }
 
-const ScoreCard = ({ title, instrument, price, bg, textColor, pdfUrl, audioUrl, image }: ScoreCardProps) => {
+const ScoreCard = ({
+    title,
+    instrument,
+    price,
+    bg,
+    textColor,
+    pdfUrl,
+    audioUrl,
+    image,
+    difficulty,
+    category
+}: ScoreCardProps) => {
     const [isPdfOpen, setIsPdfOpen] = useState(false)
     const [isAudioOpen, setIsAudioOpen] = useState(false)
+
+    const difficultyColor = {
+        Facile: 'green',
+        Moyen: 'yellow',
+        Difficile: 'orange',
+        'Très difficile': 'red'
+    }[difficulty]
 
     return (
         <VStack
@@ -28,9 +46,15 @@ const ScoreCard = ({ title, instrument, price, bg, textColor, pdfUrl, audioUrl, 
                 boxShadow: 'lg'
             }}
         >
-            <Image src={image ?? '/img/default-score-image.jpg'} alt={title} borderRadius="md" />
+            <AspectRatio ratio={4 / 3} w="100%">
+                <Image src={image ?? '/img/default-score-image.jpg'} alt={title} borderRadius="md" />
+            </AspectRatio>
             <Heading size="md">{title}</Heading>
             <Text>{instrument}</Text>
+            <HStack justify="space-between">
+                <Badge colorPalette={difficultyColor}>{difficulty}</Badge>
+                <Badge colorPalette="purple">{category}</Badge>
+            </HStack>
             <Text fontWeight="bold">{price}</Text>
             <HStack justify="space-between">
                 <Button onClick={() => setIsPdfOpen(true)} disabled={!pdfUrl}>

@@ -184,7 +184,7 @@ const LandingPage = () => {
                             Compositions en vedette
                         </Heading>
 
-                        <SimpleGrid columns={{ base: 1, md: 3 }} gap={10}>
+                        <SimpleGrid columns={{ base: 1, md: 3 }} gap={10} alignItems="flex-start">
                             {displayedScores.map((score, index) => (
                                 <ScoreCard
                                     key={index}
