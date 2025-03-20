@@ -2,14 +2,9 @@ import { useState } from 'react'
 import { Button, Heading, Text, VStack, Image, HStack, CloseButton, Portal } from '@chakra-ui/react'
 import { Dialog } from '@chakra-ui/react'
 import { FaFileAlt, FaPlay, FaStop } from 'react-icons/fa'
+import type { IScore } from '~/types/scores'
 
-interface ScoreCardProps {
-    title: string
-    instrument: string
-    price: string
-    image: string
-    pdfUrl?: string
-    audioUrl?: string
+interface ScoreCardProps extends IScore {
     bg?: string
     textColor?: string
 }
@@ -33,7 +28,7 @@ const ScoreCard = ({ title, instrument, price, bg, textColor, pdfUrl, audioUrl, 
                 boxShadow: 'lg'
             }}
         >
-            <Image src={image} alt={title} borderRadius="md" />
+            <Image src={image ?? '/img/default-score-image.jpg'} alt={title} borderRadius="md" />
             <Heading size="md">{title}</Heading>
             <Text>{instrument}</Text>
             <Text fontWeight="bold">{price}</Text>

@@ -4,6 +4,7 @@ import ExpertiseCard from './landing-page/ExpertiseCard'
 import ScoreCard from './landing-page/ScoreCard'
 import { useColorModeValue, ColorModeButton } from './ui/color-mode'
 import { useRef, useState } from 'react'
+import type { IScore } from '~/types/scores'
 
 const LandingPage = () => {
     const featuredCompositionsRef = useRef<HTMLDivElement>(null)
@@ -16,30 +17,81 @@ const LandingPage = () => {
         featuredCompositionsRef.current?.scrollIntoView({ behavior: 'smooth' })
     }
 
-    const allScores = [
+    const allScores: IScore[] = [
         {
             title: 'Piano Orchestra',
             instrument: 'Piano',
             price: '24,99 €',
-            audioUrl: undefined,
-            pdfUrl: undefined,
-            image: undefined
+            difficulty: 'Difficile',
+            category: 'Œuvres originales',
+            audioUrl: '/audio/piano-orchestra.mp3',
+            pdfUrl: '/pdf/piano-orchestra-preview.pdf',
+            image: 'https://www.imusic-school.com/wp-content/uploads/2019/08/Nocturne-N%C2%B021-Chopin-partition-piano.png'
         },
-        { title: 'Mélodie pour voix et piano', instrument: 'Voix et Piano', price: '19,99 €' },
-        { title: 'Quatuor à cordes No. 1', instrument: 'Quatuor à cordes', price: '39,99 €' },
-        { title: 'Sonate pour violon', instrument: 'Violon', price: '29,99 €' },
-        { title: 'Concerto pour flûte', instrument: 'Flûte', price: '34,99 €' },
-        { title: 'Suite pour violoncelle', instrument: 'Violoncelle', price: '27,99 €' },
-        { title: 'Trio pour piano', instrument: 'Piano Trio', price: '44,99 €' },
-        { title: 'Symphonie No. 1', instrument: 'Orchestre', price: '59,99 €' },
-        { title: 'Nocturne pour harpe', instrument: 'Harpe', price: '22,99 €' },
-        { title: 'Quintette à vent', instrument: 'Ensemble à vent', price: '49,99 €' },
-        { title: 'Étude pour guitare', instrument: 'Guitare', price: '17,99 €' },
-        { title: 'Rhapsodie pour clarinette', instrument: 'Clarinette', price: '26,99 €' }
-    ].map((e) => ({
-        ...e,
-        image: 'https://www.imusic-school.com/wp-content/uploads/2019/08/Nocturne-N%C2%B021-Chopin-partition-piano.png'
-    }))
+        {
+            title: 'Nocturne Op.9 No.2',
+            instrument: 'Piano',
+            price: '19,99 €',
+            difficulty: 'Moyen',
+            category: 'Œuvres originales',
+            audioUrl: '/audio/nocturne-op9-no2.mp3',
+            pdfUrl: '/pdf/nocturne-op9-no2-preview.pdf'
+        },
+        {
+            title: 'Clair de Lune',
+            instrument: 'Piano',
+            price: '22,99 €',
+            difficulty: 'Difficile',
+            category: 'Œuvres originales',
+            audioUrl: '/audio/clair-de-lune.mp3',
+            pdfUrl: '/pdf/clair-de-lune-preview.pdf'
+        },
+        {
+            title: 'Canon en Ré majeur',
+            instrument: 'Piano',
+            price: '14,99 €',
+            difficulty: 'Facile',
+            category: 'Arrangement',
+            audioUrl: '/audio/canon-d-major.mp3',
+            pdfUrl: '/pdf/canon-d-major-preview.pdf'
+        },
+        {
+            title: 'Fur Elise',
+            instrument: 'Piano',
+            price: '18,99 €',
+            difficulty: 'Moyen',
+            category: 'Œuvres originales',
+            audioUrl: '/audio/fur-elise.mp3',
+            pdfUrl: '/pdf/fur-elise-preview.pdf'
+        },
+        {
+            title: 'Improvisation Jazz n°1',
+            instrument: 'Piano',
+            price: '25,99 €',
+            difficulty: 'Très difficile',
+            category: 'Pastiches',
+            audioUrl: '/audio/improvisation-jazz-1.mp3',
+            pdfUrl: '/pdf/improvisation-jazz-1-preview.pdf'
+        },
+        {
+            title: 'Gymnopédie n°1',
+            instrument: 'Piano',
+            price: '20,99 €',
+            difficulty: 'Moyen',
+            category: 'Œuvres originales',
+            audioUrl: '/audio/gymnopedie-1.mp3',
+            pdfUrl: '/pdf/gymnopedie-1-preview.pdf'
+        },
+        {
+            title: 'Thème de Star Wars',
+            instrument: 'Piano',
+            price: '16,99 €',
+            difficulty: 'Facile',
+            category: 'Arrangement',
+            audioUrl: '/audio/star-wars-theme.mp3',
+            pdfUrl: '/pdf/star-wars-theme-preview.pdf'
+        }
+    ]
 
     const [showAllScores, setShowAllScores] = useState(false)
 
@@ -139,6 +191,8 @@ const LandingPage = () => {
                                     title={score.title}
                                     instrument={score.instrument}
                                     price={score.price}
+                                    difficulty={score.difficulty}
+                                    category={score.category}
                                     audioUrl={score.audioUrl}
                                     pdfUrl={score.pdfUrl}
                                     image={score.image}
