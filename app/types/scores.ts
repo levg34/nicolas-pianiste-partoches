@@ -13,5 +13,5 @@ interface ScoreMetadata {
 interface ScoreInfo {
     difficulty: 'Facile' | 'Moyen' | 'Difficile' | 'Très difficile'
     category: 'Pédagogie' | 'Arrangement' | 'Pastiches' | 'Œuvres originales'
-    // intruments?: string[]
+    usedInstruments?: string[]
 }

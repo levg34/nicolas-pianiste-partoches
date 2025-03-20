@@ -1,5 +1,22 @@
-import { Box, Button, Container, Flex, Heading, Text, VStack, Image, SimpleGrid, Link } from '@chakra-ui/react'
+import {
+    Box,
+    Button,
+    Container,
+    Flex,
+    Heading,
+    Text,
+    VStack,
+    Image,
+    SimpleGrid,
+    Link,
+    HStack,
+    Select,
+    createListCollection,
+    Portal,
+    useBreakpointValue
+} from '@chakra-ui/react'
 import { FaMusic, FaPen, FaChalkboardTeacher } from 'react-icons/fa'
+import { FaFilterCircleXmark } from 'react-icons/fa6'
 import ExpertiseCard from './landing-page/ExpertiseCard'
 import ScoreCard from './landing-page/ScoreCard'
 import { useColorModeValue, ColorModeButton } from './ui/color-mode'
@@ -115,6 +132,34 @@ const LandingPage = () => {
         }
     ]
 
+    const difficulties = createListCollection({
+        items: [
+            { label: 'Facile', value: 'Facile' },
+            { label: 'Moyen', value: 'Moyen' },
+            { label: 'Difficile', value: 'Difficile' },
+            { label: 'Très difficile', value: 'Très difficile' }
+        ]
+    })
+
+    const categories = createListCollection({
+        items: [
+            { label: 'Pédagogie', value: 'Pédagogie' },
+            { label: 'Arrangement', value: 'Arrangement' },
+            { label: 'Pastiches', value: 'Pastiches' },
+            { label: 'Œuvres originales', value: 'Œuvres originales' }
+        ]
+    })
+
+    const instruments = createListCollection({
+        items: [
+            { label: 'Piano', value: 'Piano' },
+            { label: 'Guitare', value: 'Guitare' },
+            { label: 'Violon', value: 'Violon' }
+        ]
+    })
+
+    const isMobile = useBreakpointValue({ base: true, md: false })
+
     return (
         <Box>
             {/* Header */}
@@ -181,8 +226,91 @@ const LandingPage = () => {
                 <Container maxW="container.xl">
                     <VStack gap={12}>
                         <Heading size="xl" color={useColorModeValue('gray.800', 'whiteAlpha.900')}>
-                            Compositions en vedette
+                            {!showAllScores ? 'Compositions en vedette' : 'Toutes les compositions'}
                         </Heading>
+
+                        {/* Filtres */}
+                        {showAllScores && (
+                            <HStack gap={4} w="100%" justify="center">
+                                <Select.Root collection={difficulties} size="sm" width="200px">
+                                    <Select.Label>Difficulté</Select.Label>
+                                    <Select.Control>
+                                        <Select.Trigger>
+                                            <Select.ValueText placeholder="Filtrer par difficulté" />
+                                        </Select.Trigger>
+                                        <Select.IndicatorGroup>
+                                            <Select.Indicator />
+                                        </Select.IndicatorGroup>
+                                    </Select.Control>
+                                    <Portal>
+                                        <Select.Positioner>
+                                            <Select.Content>
+                                                {difficulties.items.map((item) => (
+                                                    <Select.Item item={item} key={item.value}>
+                                                        {item.label}
+                                                        <Select.ItemIndicator />
+                                                    </Select.Item>
+                                                ))}
+                                            </Select.Content>
+                                        </Select.Positioner>
+                                    </Portal>
+                                </Select.Root>
+
+                                <Select.Root collection={categories} size="sm" width="200px">
+                                    <Select.Label>Catégorie</Select.Label>
+                                    <Select.Control>
+                                        <Select.Trigger>
+                                            <Select.ValueText placeholder="Filtrer par catégorie" />
+                                        </Select.Trigger>
+                                        <Select.IndicatorGroup>
+                                            <Select.Indicator />
+                                        </Select.IndicatorGroup>
+                                    </Select.Control>
+                                    <Portal>
+                                        <Select.Positioner>
+                                            <Select.Content>
+                                                {categories.items.map((item) => (
+                                                    <Select.Item item={item} key={item.value}>
+                                                        {item.label}
+                                                        <Select.ItemIndicator />
+                                                    </Select.Item>
+                                                ))}
+                                            </Select.Content>
+                                        </Select.Positioner>
+                                    </Portal>
+                                </Select.Root>
+
+                                <Select.Root collection={instruments} size="sm" width="200px">
+                                    <Select.Label>Instrument</Select.Label>
+                                    <Select.Control>
+                                        <Select.Trigger>
+                                            <Select.ValueText placeholder="Filtrer par instrument" />
+                                        </Select.Trigger>
+                                        <Select.IndicatorGroup>
+                                            <Select.Indicator />
+                                        </Select.IndicatorGroup>
+                                    </Select.Control>
+                                    <Portal>
+                                        <Select.Positioner>
+                                            <Select.Content>
+                                                {instruments.items.map((item) => (
+                                                    <Select.Item item={item} key={item.value}>
+                                                        {item.label}
+                                                        <Select.ItemIndicator />
+                                                    </Select.Item>
+                                                ))}
+                                            </Select.Content>
+                                        </Select.Positioner>
+                                    </Portal>
+                                </Select.Root>
+
+                                {/* Bouton pour réinitialiser les filtres */}
+                                <Button colorScheme="blue" variant="outline">
+                                    <FaFilterCircleXmark />
+                                    {!isMobile && ' Réinitialiser'}
+                                </Button>
+                            </HStack>
+                        )}
 
                         <SimpleGrid columns={{ base: 1, md: 3 }} gap={10} alignItems="flex-start">
                             {displayedScores.map((score, index) => (
