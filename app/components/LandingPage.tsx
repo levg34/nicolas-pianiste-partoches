@@ -16,7 +16,6 @@ import {
     useBreakpointValue
 } from '@chakra-ui/react'
 import { FaMusic, FaPen, FaChalkboardTeacher } from 'react-icons/fa'
-import { FaFilterCircleXmark } from 'react-icons/fa6'
 import ExpertiseCard from './landing-page/ExpertiseCard'
 import ScoreCard from './landing-page/ScoreCard'
 import { useColorModeValue, ColorModeButton } from './ui/color-mode'
@@ -239,7 +238,8 @@ const LandingPage = () => {
                                             <Select.ValueText placeholder="Filtrer par difficulté" />
                                         </Select.Trigger>
                                         <Select.IndicatorGroup>
-                                            <Select.Indicator />
+                                            <Select.ClearTrigger />
+                                            {!isMobile && <Select.Indicator />}
                                         </Select.IndicatorGroup>
                                     </Select.Control>
                                     <Portal>
@@ -263,7 +263,8 @@ const LandingPage = () => {
                                             <Select.ValueText placeholder="Filtrer par catégorie" />
                                         </Select.Trigger>
                                         <Select.IndicatorGroup>
-                                            <Select.Indicator />
+                                            <Select.ClearTrigger />
+                                            {!isMobile && <Select.Indicator />}
                                         </Select.IndicatorGroup>
                                     </Select.Control>
                                     <Portal>
@@ -287,7 +288,8 @@ const LandingPage = () => {
                                             <Select.ValueText placeholder="Filtrer par instrument" />
                                         </Select.Trigger>
                                         <Select.IndicatorGroup>
-                                            <Select.Indicator />
+                                            <Select.ClearTrigger />
+                                            {!isMobile && <Select.Indicator />}
                                         </Select.IndicatorGroup>
                                     </Select.Control>
                                     <Portal>
@@ -303,12 +305,6 @@ const LandingPage = () => {
                                         </Select.Positioner>
                                     </Portal>
                                 </Select.Root>
-
-                                {/* Bouton pour réinitialiser les filtres */}
-                                <Button colorScheme="blue" variant="outline">
-                                    <FaFilterCircleXmark />
-                                    {!isMobile && ' Réinitialiser'}
-                                </Button>
                             </HStack>
                         )}
 
