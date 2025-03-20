@@ -280,7 +280,7 @@ const LandingPage = () => {
                                     </Portal>
                                 </Select.Root>
 
-                                <Select.Root collection={instruments} size="sm" width="200px">
+                                <Select.Root multiple collection={instruments} size="sm" width="200px">
                                     <Select.Label>Instrument</Select.Label>
                                     <Select.Control>
                                         <Select.Trigger>
