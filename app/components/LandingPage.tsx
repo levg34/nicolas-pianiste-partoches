@@ -5,7 +5,7 @@ import ScoreCard from './landing-page/ScoreCard'
 import { useColorModeValue, ColorModeButton } from './ui/color-mode'
 import { useRef, useState } from 'react'
 
-const ComposerLandingPage = () => {
+const LandingPage = () => {
     const featuredCompositionsRef = useRef<HTMLDivElement>(null)
 
     const heroBg = useColorModeValue('blue.50', 'gray.800')
@@ -203,4 +203,4 @@ const ComposerLandingPage = () => {
     )
 }
 
-export default ComposerLandingPage
+export default LandingPage
