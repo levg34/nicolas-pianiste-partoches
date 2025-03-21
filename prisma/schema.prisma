@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Score {
-  id              String     @id @default(cuid())
+  id              Int        @id @default(autoincrement())
   title           String
   instrument      String
   price           String

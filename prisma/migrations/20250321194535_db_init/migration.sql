@@ -6,7 +6,7 @@ CREATE TYPE "Category" AS ENUM ('Pedagogie', 'Arrangement', 'Pastiches', 'Oeuvre
 
 -- CreateTable
 CREATE TABLE "Score" (
-    "id" TEXT NOT NULL,
+    "id" SERIAL NOT NULL,
     "title" TEXT NOT NULL,
     "instrument" TEXT NOT NULL,
     "price" TEXT NOT NULL,
