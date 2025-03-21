@@ -7,9 +7,10 @@ WORKDIR /app
 RUN pnpm install
 
 FROM node20-pnpm AS production-dependencies-env
-COPY ./package.json pnpm-lock.yaml /app/
+COPY ./package.json pnpm-lock.yaml ./prisma/schema.prisma /app/
 WORKDIR /app
 RUN pnpm install --frozen-lockfile --prod
+RUN pnpm dlx prisma generate
 
 FROM node20-pnpm AS build-env
 COPY . /app/
