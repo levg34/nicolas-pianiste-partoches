@@ -37,7 +37,18 @@ const ScoreFilters = ({ setFilters }: Props) => {
 
     return (
         <HStack gap={4} w="100%" justify="center">
-            <Select.Root collection={difficulties} size="sm" width="200px">
+            {/* Difficulté */}
+            <Select.Root
+                collection={difficulties}
+                size="sm"
+                width="200px"
+                onValueChange={(e) =>
+                    setFilters((filters) => ({
+                        ...filters,
+                        difficulties: e.value ? (e.value as ['Facile']) : undefined
+                    }))
+                }
+            >
                 <Select.Label>Difficulté</Select.Label>
                 <Select.Control>
                     <Select.Trigger>
@@ -62,7 +73,18 @@ const ScoreFilters = ({ setFilters }: Props) => {
                 </Portal>
             </Select.Root>
 
-            <Select.Root collection={categories} size="sm" width="200px">
+            {/* Catégorie */}
+            <Select.Root
+                collection={categories}
+                size="sm"
+                width="200px"
+                onValueChange={(e) =>
+                    setFilters((filters) => ({
+                        ...filters,
+                        categories: e.value ? (e.value as ['Œuvres originales']) : undefined
+                    }))
+                }
+            >
                 <Select.Label>Catégorie</Select.Label>
                 <Select.Control>
                     <Select.Trigger>
@@ -87,7 +109,19 @@ const ScoreFilters = ({ setFilters }: Props) => {
                 </Portal>
             </Select.Root>
 
-            <Select.Root multiple collection={instruments} size="sm" width="200px">
+            {/* Instruments */}
+            <Select.Root
+                multiple
+                collection={instruments}
+                size="sm"
+                width="200px"
+                onValueChange={(e) =>
+                    setFilters((filters) => ({
+                        ...filters,
+                        instruments: e.value ? e.value : undefined
+                    }))
+                }
+            >
                 <Select.Label>Instrument</Select.Label>
                 <Select.Control>
                     <Select.Trigger>
