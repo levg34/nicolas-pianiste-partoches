@@ -1,15 +1,11 @@
-import { Box, Container, Heading, VStack } from '@chakra-ui/react'
-import { useColorModeValue } from './ui/color-mode'
-import type { IScore } from '~/types/scores'
-import { useRef, useState } from 'react'
-import { useLoaderData } from 'react-router'
+import { Box } from '@chakra-ui/react'
+import { useRef } from 'react'
 import Header from './layout/Header'
 import HeroSection from './landing-page/HeroSection'
 import ExpertiseSection from './landing-page/expertise/ExpertiseSection'
 import Footer from './layout/Footer'
 import AboutSection from './landing-page/AboutSection'
-import ScoreFilters from './landing-page/scores/ScoreFilters'
-import ScoreList from './landing-page/scores/ScoreList'
+import ScoresSection from './landing-page/scores/ScoresSection'
 
 const LandingPage = () => {
     const featuredCompositionsRef = useRef<HTMLDivElement>(null)
@@ -17,12 +13,6 @@ const LandingPage = () => {
     const scrollToFeaturedCompositions = () => {
         featuredCompositionsRef.current?.scrollIntoView({ behavior: 'smooth' })
     }
-
-    const allScores: IScore[] = useLoaderData()
-
-    const [showAllScores, setShowAllScores] = useState(false)
-
-    const displayedScores = showAllScores ? allScores : allScores.slice(0, 3)
 
     return (
         <Box>
@@ -36,24 +26,7 @@ const LandingPage = () => {
             <ExpertiseSection />
 
             {/* Featured Compositions */}
-            <Box bg={useColorModeValue('gray.50', 'gray.800')} py={20} ref={featuredCompositionsRef}>
-                <Container maxW="container.xl">
-                    <VStack gap={12}>
-                        <Heading size="xl" color={useColorModeValue('gray.800', 'whiteAlpha.900')}>
-                            {!showAllScores ? 'Compositions en vedette' : 'Toutes les compositions'}
-                        </Heading>
-
-                        {/* Filtres */}
-                        {showAllScores && <ScoreFilters />}
-
-                        <ScoreList
-                            showAllScores={showAllScores}
-                            setShowAllScores={setShowAllScores}
-                            displayedScores={displayedScores}
-                        />
-                    </VStack>
-                </Container>
-            </Box>
+            <ScoresSection ref={featuredCompositionsRef} />
 
             {/* About Section */}
             <AboutSection />
