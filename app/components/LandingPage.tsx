@@ -18,9 +18,10 @@ import { useColorModeValue } from './ui/color-mode'
 import { useRef, useState } from 'react'
 import type { IScore } from '~/types/scores'
 import { useLoaderData } from 'react-router'
-import Header from './landing-page/Header'
+import Header from './layout/Header'
 import HeroSection from './landing-page/HeroSection'
-import ExpertiseSection from './landing-page/ExpertiseSection'
+import ExpertiseSection from './landing-page/expertise/ExpertiseSection'
+import Footer from './layout/Footer'
 
 const LandingPage = () => {
     const featuredCompositionsRef = useRef<HTMLDivElement>(null)
@@ -219,18 +220,7 @@ const LandingPage = () => {
             </Box>
 
             {/* Footer */}
-            <Box
-                as="footer"
-                bg={useColorModeValue('blue.700', 'gray.900')}
-                color={useColorModeValue('white', 'whiteAlpha.900')}
-                py={10}
-            >
-                <Container maxW="container.xl">
-                    <Text textAlign="center">
-                        &copy; {new Date().getFullYear()} Nicolas Dross. Tous droits réservés.
-                    </Text>
-                </Container>
-            </Box>
+            <Footer />
         </Box>
     )
 }

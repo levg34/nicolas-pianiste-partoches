@@ -1,8 +1,8 @@
 import { Box, Container, SimpleGrid } from '@chakra-ui/react'
-import { useColorModeValue } from '../ui/color-mode'
-import { expertiseData } from './data/expertise'
+import { useColorModeValue } from '../../ui/color-mode'
+import { expertiseData } from './expertise-data'
 import ExpertiseCard from './ExpertiseCard'
-import useCustomColorMode from './useCustomColorMode'
+import useCustomColorMode from '../useCustomColorMode'
 
 const ExpertiseSection = () => {
     const { textColor, cardBg } = useCustomColorMode()
