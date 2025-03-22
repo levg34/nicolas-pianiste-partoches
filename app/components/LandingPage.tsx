@@ -13,7 +13,7 @@ import {
     Portal,
     useBreakpointValue
 } from '@chakra-ui/react'
-import ScoreCard from './landing-page/ScoreCard'
+import ScoreCard from './landing-page/scores/ScoreCard'
 import { useColorModeValue } from './ui/color-mode'
 import { useRef, useState } from 'react'
 import type { IScore } from '~/types/scores'
@@ -22,6 +22,7 @@ import Header from './layout/Header'
 import HeroSection from './landing-page/HeroSection'
 import ExpertiseSection from './landing-page/expertise/ExpertiseSection'
 import Footer from './layout/Footer'
+import AboutSection from './landing-page/AboutSection'
 
 const LandingPage = () => {
     const featuredCompositionsRef = useRef<HTMLDivElement>(null)
@@ -201,23 +202,7 @@ const LandingPage = () => {
             </Box>
 
             {/* About Section */}
-            <Box py={20}>
-                <Container maxW="container.xl">
-                    <VStack gap={8} align="center" textAlign="center">
-                        <Heading size="xl">À propos de Nicolas Dross</Heading>
-                        <Text fontSize="lg" maxW="800px">
-                            Pianiste, compositeur, arrangeur et enseignant, Nicolas Dross est un artiste curieux et
-                            polyvalent. Formé au Conservatoire National de Paris, il compose pour ses amis proches et
-                            enseigne le piano en région parisienne.
-                        </Text>
-                        <Link href="https://nicolasdross.fr">
-                            <Button variant="ghost" colorScheme="blue" textDecoration="underline">
-                                En savoir plus sur Nicolas Dross
-                            </Button>
-                        </Link>
-                    </VStack>
-                </Container>
-            </Box>
+            <AboutSection />
 
             {/* Footer */}
             <Footer />
