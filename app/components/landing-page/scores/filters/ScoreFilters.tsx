@@ -1,6 +1,7 @@
 import { HStack, Select, Portal, createListCollection, useBreakpointValue } from '@chakra-ui/react'
 import { useLoaderData } from 'react-router'
 import type { IFilters, IScore } from '~/types/scores'
+import { extractDistinctsInstruments } from './filter-utils'
 
 type Props = { setFilters: React.Dispatch<React.SetStateAction<IFilters>> }
 
@@ -17,7 +18,7 @@ const ScoreFilters = ({ setFilters }: Props) => {
         items: categoryList.map((category) => ({ label: category, value: category }))
     })
 
-    const instrumentList = ['Piano']
+    const instrumentList = extractDistinctsInstruments(allScores)
     const instruments = createListCollection({
         items: instrumentList.map((instrument) => ({
             label: instrument,

@@ -29,3 +29,19 @@ export function filterScores(scores: IScore[], filters: IFilters): IScore[] {
         return true
     })
 }
+
+export function extractDistinctsInstruments(scores: IScore[]): string[] {
+    const instrumentSet = new Set<string>()
+
+    scores.forEach((score) => {
+        if (score.instrument) {
+            instrumentSet.add(score.instrument)
+        }
+
+        if (score.usedInstruments && Array.isArray(score.usedInstruments)) {
+            score.usedInstruments.forEach((instrument) => instrumentSet.add(instrument))
+        }
+    })
+
+    return Array.from(instrumentSet).sort()
+}
