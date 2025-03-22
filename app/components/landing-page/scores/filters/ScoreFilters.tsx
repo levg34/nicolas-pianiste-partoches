@@ -1,6 +1,12 @@
 import { HStack, Select, Portal, createListCollection, useBreakpointValue } from '@chakra-ui/react'
+import { useLoaderData } from 'react-router'
+import type { IFilters, IScore } from '~/types/scores'
 
-const ScoreFilters = () => {
+type Props = { setFilters: React.Dispatch<React.SetStateAction<IFilters>> }
+
+const ScoreFilters = ({ setFilters }: Props) => {
+    const allScores: IScore[] = useLoaderData()
+
     const difficulties = createListCollection({
         items: [
             { label: 'Facile', value: 'Facile' },

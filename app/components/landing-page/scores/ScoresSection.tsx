@@ -1,19 +1,23 @@
 import { Box, Container, Heading, VStack } from '@chakra-ui/react'
 import { useColorModeValue } from '../../ui/color-mode'
 import { useLoaderData } from 'react-router'
-import type { IScore } from '~/types/scores'
+import type { IFilters, IScore } from '~/types/scores'
 import { forwardRef, useState } from 'react'
-import ScoreFilters from './ScoreFilters'
+import ScoreFilters from './filters/ScoreFilters'
 import ScoreList from './ScoreList'
+import { filterScores } from './filters/filter-utils'
 
 type Props = {}
 
-const ScoresSection = forwardRef((props: Props, ref) => {
+const ScoresSection = forwardRef((_: Props, ref) => {
     const allScores: IScore[] = useLoaderData()
 
     const [showAllScores, setShowAllScores] = useState(false)
 
-    const displayedScores = showAllScores ? allScores : allScores.slice(0, 3)
+    const [filters, setFilters] = useState<IFilters>({})
+
+    const displayedScores = showAllScores ? filterScores(allScores, filters) : allScores.slice(0, 3)
+
     return (
         <Box bg={useColorModeValue('gray.50', 'gray.800')} py={20} ref={ref}>
             <Container maxW="container.xl">
@@ -23,7 +27,7 @@ const ScoresSection = forwardRef((props: Props, ref) => {
                     </Heading>
 
                     {/* Filtres */}
-                    {showAllScores && <ScoreFilters />}
+                    {showAllScores && <ScoreFilters setFilters={setFilters} />}
 
                     <ScoreList
                         showAllScores={showAllScores}

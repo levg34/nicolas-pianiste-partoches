@@ -10,8 +10,18 @@ interface ScoreMetadata {
     audioUrl?: string
 }
 
+type DifficultyType = 'Facile' | 'Moyen' | 'Difficile' | 'Très difficile'
+
+type CategoryType = 'Pédagogie' | 'Arrangement' | 'Pastiches' | 'Œuvres originales'
+
 interface ScoreInfo {
-    difficulty: 'Facile' | 'Moyen' | 'Difficile' | 'Très difficile'
-    category: 'Pédagogie' | 'Arrangement' | 'Pastiches' | 'Œuvres originales'
+    difficulty: DifficultyType
+    category: CategoryType
     usedInstruments?: string[]
+}
+
+export type IFilters = {
+    difficulties?: DifficultyType[]
+    categories?: CategoryType[]
+    instruments?: string[]
 }
