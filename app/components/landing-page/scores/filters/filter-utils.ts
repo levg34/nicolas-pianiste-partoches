@@ -15,6 +15,9 @@ export function filterScores(scores: IScore[], filters: IFilters): IScore[] {
         }
 
         if (filters.instruments && filters.instruments.length > 0) {
+            if (filters.instruments.includes(score.instrument)) {
+                return true
+            }
             if (!score.usedInstruments) {
                 return false
             }

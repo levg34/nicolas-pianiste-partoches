@@ -27,6 +27,14 @@ describe('filterScores', () => {
             difficulty: 'Difficile',
             category: 'Œuvres originales',
             usedInstruments: ['Violon', 'Alto']
+        },
+        {
+            title: 'Score 4',
+            instrument: 'Orchestre',
+            price: '20',
+            difficulty: 'Difficile',
+            category: 'Œuvres originales',
+            usedInstruments: ['Alto', 'Piano', 'Tuba', 'Saxophone', 'Triangle']
         }
     ]
 
@@ -71,5 +79,12 @@ describe('filterScores', () => {
         const filters: IFilters = { difficulties: ['Très difficile'] }
         const result = filterScores(sampleScores, filters)
         expect(result).toHaveLength(0)
+    })
+
+    it('should include the instrument in the title', () => {
+        const filters: IFilters = { instruments: ['Orchestre'] }
+        const result = filterScores(sampleScores, filters)
+        expect(result).toHaveLength(1)
+        expect(result[0].title).toBe('Score 4')
     })
 })
