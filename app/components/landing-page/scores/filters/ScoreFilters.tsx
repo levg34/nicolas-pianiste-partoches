@@ -3,9 +3,12 @@ import { useLoaderData } from 'react-router'
 import type { IFilters, IScore } from '~/types/scores'
 import { extractDistinctsInstruments } from './filter-utils'
 
-type Props = { setFilters: React.Dispatch<React.SetStateAction<IFilters>> }
+type Props = {
+    filters: IFilters
+    setFilters: React.Dispatch<React.SetStateAction<IFilters>>
+}
 
-const ScoreFilters = ({ setFilters }: Props) => {
+const ScoreFilters = ({ filters, setFilters }: Props) => {
     const allScores: IScore[] = useLoaderData()
 
     const difficultiesList = ['Facile', 'Moyen', 'Difficile', 'Très difficile']
@@ -41,6 +44,7 @@ const ScoreFilters = ({ setFilters }: Props) => {
                         difficulties: e.value ? (e.value as ['Facile']) : undefined
                     }))
                 }
+                value={filters.difficulties ?? []}
             >
                 <Select.Label>Difficulté</Select.Label>
                 <Select.Control>
@@ -77,6 +81,7 @@ const ScoreFilters = ({ setFilters }: Props) => {
                         categories: e.value ? (e.value as ['Œuvres originales']) : undefined
                     }))
                 }
+                value={filters.categories ?? []}
             >
                 <Select.Label>Catégorie</Select.Label>
                 <Select.Control>
@@ -114,6 +119,7 @@ const ScoreFilters = ({ setFilters }: Props) => {
                         instruments: e.value ? e.value : undefined
                     }))
                 }
+                value={filters.instruments ?? []}
             >
                 <Select.Label>Instrument</Select.Label>
                 <Select.Control>

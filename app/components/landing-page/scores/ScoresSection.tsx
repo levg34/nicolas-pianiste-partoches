@@ -1,4 +1,4 @@
-import { Box, Container, Heading, VStack } from '@chakra-ui/react'
+import { Box, Container, Heading, VStack, Text, Button } from '@chakra-ui/react'
 import { useColorModeValue } from '../../ui/color-mode'
 import { useLoaderData } from 'react-router'
 import type { IFilters, IScore } from '~/types/scores'
@@ -18,6 +18,19 @@ const ScoresSection = forwardRef((_: Props, ref) => {
 
     const displayedScores = showAllScores ? filterScores(allScores, filters) : allScores.slice(0, 3)
 
+    const resetFilters = () => {
+        setFilters({})
+    }
+
+    const NoResultsView = () => (
+        <VStack gap={4} align="center">
+            <Text fontSize="xl">Aucune composition ne correspond à vos critères de recherche.</Text>
+            <Button colorScheme="blue" onClick={resetFilters}>
+                Réinitialiser les filtres
+            </Button>
+        </VStack>
+    )
+
     return (
         <Box bg={useColorModeValue('gray.50', 'gray.800')} py={20} ref={ref}>
             <Container maxW="container.xl">
@@ -27,13 +40,17 @@ const ScoresSection = forwardRef((_: Props, ref) => {
                     </Heading>
 
                     {/* Filtres */}
-                    {showAllScores && <ScoreFilters setFilters={setFilters} />}
+                    {showAllScores && <ScoreFilters filters={filters} setFilters={setFilters} />}
 
-                    <ScoreList
-                        showAllScores={showAllScores}
-                        setShowAllScores={setShowAllScores}
-                        displayedScores={displayedScores}
-                    />
+                    {displayedScores.length > 0 ? (
+                        <ScoreList
+                            showAllScores={showAllScores}
+                            setShowAllScores={setShowAllScores}
+                            displayedScores={displayedScores}
+                        />
+                    ) : (
+                        <NoResultsView />
+                    )}
                 </VStack>
             </Container>
         </Box>
