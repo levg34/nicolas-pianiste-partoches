@@ -15,21 +15,7 @@ model Score {
   image           String?
   pdfUrl          String?
   audioUrl        String?
-  difficulty      Difficulty
-  category        Category
+  difficulty      String
+  category        String
   usedInstruments String[]
-}
-
-enum Difficulty {
-  Facile
-  Moyen
-  Difficile
-  TresDifficile
-}
-
-enum Category {
-  Pedagogie
-  Arrangement
-  Pastiches
-  OeuvresOriginales
 }
