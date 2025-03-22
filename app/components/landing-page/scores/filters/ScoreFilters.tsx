@@ -7,30 +7,22 @@ type Props = { setFilters: React.Dispatch<React.SetStateAction<IFilters>> }
 const ScoreFilters = ({ setFilters }: Props) => {
     const allScores: IScore[] = useLoaderData()
 
+    const difficultiesList = ['Facile', 'Moyen', 'Difficile', 'Très difficile']
     const difficulties = createListCollection({
-        items: [
-            { label: 'Facile', value: 'Facile' },
-            { label: 'Moyen', value: 'Moyen' },
-            { label: 'Difficile', value: 'Difficile' },
-            { label: 'Très difficile', value: 'Très difficile' }
-        ]
+        items: difficultiesList.map((difficulty) => ({ label: difficulty, value: difficulty }))
     })
 
+    const categoryList = ['Pédagogie', 'Arrangement', 'Pastiches', 'Œuvres originales']
     const categories = createListCollection({
-        items: [
-            { label: 'Pédagogie', value: 'Pédagogie' },
-            { label: 'Arrangement', value: 'Arrangement' },
-            { label: 'Pastiches', value: 'Pastiches' },
-            { label: 'Œuvres originales', value: 'Œuvres originales' }
-        ]
+        items: categoryList.map((category) => ({ label: category, value: category }))
     })
 
+    const instrumentList = ['Piano']
     const instruments = createListCollection({
-        items: [
-            { label: 'Piano', value: 'Piano' },
-            { label: 'Guitare', value: 'Guitare' },
-            { label: 'Violon', value: 'Violon' }
-        ]
+        items: instrumentList.map((instrument) => ({
+            label: instrument,
+            value: instrument
+        }))
     })
 
     const isMobile = useBreakpointValue({ base: true, md: false })
