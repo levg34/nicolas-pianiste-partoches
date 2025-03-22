@@ -2,11 +2,9 @@ import {
     Box,
     Button,
     Container,
-    Flex,
     Heading,
     Text,
     VStack,
-    Image,
     SimpleGrid,
     Link,
     HStack,
@@ -15,20 +13,17 @@ import {
     Portal,
     useBreakpointValue
 } from '@chakra-ui/react'
-import ExpertiseCard from './landing-page/ExpertiseCard'
 import ScoreCard from './landing-page/ScoreCard'
-import { useColorModeValue, ColorModeButton } from './ui/color-mode'
+import { useColorModeValue } from './ui/color-mode'
 import { useRef, useState } from 'react'
 import type { IScore } from '~/types/scores'
 import { useLoaderData } from 'react-router'
-import { expertiseData } from './landing-page/data/expertise'
+import Header from './landing-page/Header'
+import HeroSection from './landing-page/HeroSection'
+import ExpertiseSection from './landing-page/ExpertiseSection'
 
 const LandingPage = () => {
     const featuredCompositionsRef = useRef<HTMLDivElement>(null)
-
-    const heroBg = useColorModeValue('blue.50', 'gray.800')
-    const cardBg = useColorModeValue('white', 'gray.700')
-    const textColor = useColorModeValue('gray.800', 'whiteAlpha.900')
 
     const scrollToFeaturedCompositions = () => {
         featuredCompositionsRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -71,63 +66,13 @@ const LandingPage = () => {
     return (
         <Box>
             {/* Header */}
-            <Box as="header" bg={useColorModeValue('blue.700', 'gray.900')} color="white" py={4}>
-                <Container maxW="container.xl">
-                    <Flex justify="space-between" align="center">
-                        <Heading size="lg">Nicolas Dross - Partitions</Heading>
-                        <Flex align="center" gap={4}>
-                            <Link href="https://nicolasdross.fr">
-                                <Button variant="outline" colorScheme="whiteAlpha" color={'white'}>
-                                    Site principal
-                                </Button>
-                            </Link>
-                            <ColorModeButton color={'white'} />
-                        </Flex>
-                    </Flex>
-                </Container>
-            </Box>
+            <Header />
 
             {/* Hero Section */}
-            <Box bg={heroBg} py={20}>
-                <Container maxW="container.xl">
-                    <Flex direction={{ base: 'column', md: 'row' }} align="center" justify="space-between">
-                        <VStack align="flex-start" gap={6} maxW="500px" color={textColor}>
-                            <Heading size="2xl">Compositions originales de Nicolas Dross</Heading>
-                            <Text fontSize="xl">
-                                Découvrez et achetez des partitions uniques directement du compositeur
-                            </Text>
-                            <Button size="lg" colorScheme="blue" onClick={scrollToFeaturedCompositions}>
-                                Parcourir les partitions
-                            </Button>
-                        </VStack>
-                        <Image
-                            src="/img/nicolas-image.jpg"
-                            alt="Nicolas Dross"
-                            borderRadius="full"
-                            boxSize={{ base: '200px', md: '300px' }}
-                            mt={{ base: 8, md: 0 }}
-                        />
-                    </Flex>
-                </Container>
-            </Box>
+            <HeroSection scrollToFeaturedCompositions={scrollToFeaturedCompositions} />
 
             {/* Expertise Section */}
-            <Box py={20} bg={useColorModeValue('white', 'gray.900')}>
-                <Container maxW="container.xl">
-                    <SimpleGrid columns={{ base: 1, md: 3 }} gap={10}>
-                        {expertiseData.map((expertise, index) => (
-                            <ExpertiseCard
-                                key={index}
-                                bg={cardBg}
-                                color={textColor}
-                                icon={expertise.icon}
-                                title={expertise.title}
-                                text={expertise.text}
-                            />
-                        ))}
-                    </SimpleGrid>
-                </Container>
-            </Box>
+            <ExpertiseSection />
 
             {/* Featured Compositions */}
             <Box bg={useColorModeValue('gray.50', 'gray.800')} py={20} ref={featuredCompositionsRef}>
