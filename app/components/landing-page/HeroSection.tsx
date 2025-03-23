@@ -17,15 +17,16 @@ const HeroSection = ({ scrollToFeaturedCompositions }: Props) => {
                     <VStack align="flex-start" gap={6} maxW="500px" color={textColor}>
                         <Heading size="2xl">Compositions originales de Nicolas Dross</Heading>
                         <Text fontSize="xl">
-                            Découvrez et achetez des partitions uniques directement du compositeur
+                            Plongez dans l'univers musical de Nicolas et procurez-vous des partitions exclusives
+                            directement auprès du compositeur.
                         </Text>
                         <Button size="lg" colorScheme="blue" onClick={scrollToFeaturedCompositions}>
-                            Parcourir les partitions
+                            Explorer les partitions
                         </Button>
                     </VStack>
                     <Image
                         src="/img/nicolas-image.jpg"
-                        alt="Nicolas Dross"
+                        alt="Portrait de Nicolas Dross"
                         borderRadius="full"
                         boxSize={{ base: '200px', md: '300px' }}
                         mt={{ base: 8, md: 0 }}
