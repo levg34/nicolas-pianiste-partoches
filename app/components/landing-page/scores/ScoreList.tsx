@@ -13,9 +13,9 @@ const ScoreList = ({ displayedScores, showAllScores, setShowAllScores }: Props) 
     return (
         <>
             <SimpleGrid columns={{ base: 1, md: 3 }} gap={10} alignItems="flex-start">
-                {displayedScores.map((score, index) => (
+                {displayedScores.map((score) => (
                     <ScoreCard
-                        key={index}
+                        key={score.id}
                         title={score.title}
                         instrument={score.instrument}
                         price={score.price}

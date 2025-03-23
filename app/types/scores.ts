@@ -1,4 +1,4 @@
-export interface IScore extends ScoreMetadata, ScoreInfo {
+export interface IScore extends ScoreMetadata, ScoreInfo, WithId {
     title: string
     instrument: string
     price: string // number
@@ -24,4 +24,8 @@ export type IFilters = {
     difficulties?: DifficultyType[]
     categories?: CategoryType[]
     instruments?: string[]
+}
+
+type WithId = {
+    id?: number
 }
