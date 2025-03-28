@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 import type { Route } from './+types/cart'
 import Cart from '~/components/cart/Cart'
+import { Container } from '@chakra-ui/react'
 
 export async function loader({ params }: Route.LoaderArgs) {
     const prisma = new PrismaClient()
@@ -18,5 +19,9 @@ export async function loader({ params }: Route.LoaderArgs) {
 }
 
 export default function CartRoute({ loaderData }: Route.ComponentProps) {
-    return <Cart score={loaderData} />
+    return (
+        <Container>
+            <Cart score={loaderData} />
+        </Container>
+    )
 }

@@ -22,7 +22,7 @@ export default function Cart({ score }: CartProps) {
     }
 
     return (
-        <Box maxW="500px" mx="auto" p="6" borderWidth="1px" borderRadius="lg" boxShadow="md" bg="white">
+        <Box maxW="500px" mx="auto" p="6" borderWidth="1px" borderRadius="lg" boxShadow="md">
             <Image
                 src={score.image ?? '/img/default-score-image.jpg'}
                 alt={`Image de la partition ${score.title}`}
