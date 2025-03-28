@@ -3,6 +3,7 @@ import { Button, Heading, Text, VStack, Image, HStack, CloseButton, Portal, Badg
 import { Dialog } from '@chakra-ui/react'
 import { FaFileAlt, FaPlay, FaStop } from 'react-icons/fa'
 import type { IScore } from '~/types/scores'
+import { Link } from 'react-router'
 
 interface ScoreCardProps extends IScore {
     bg?: string
@@ -10,6 +11,7 @@ interface ScoreCardProps extends IScore {
 }
 
 const ScoreCard = ({
+    id,
     title,
     instrument,
     price,
@@ -74,7 +76,7 @@ const ScoreCard = ({
                 </Button>
             </HStack>
             {isAudioOpen && <audio controls src={audioUrl} style={{ width: '100%' }} autoPlay />}
-            <Button aria-label="Acheter la partition" colorScheme="blue">
+            <Button aria-label="Acheter la partition" colorScheme="blue" as={Link} to={`/cart/${id}`}>
                 Acheter
             </Button>
 
