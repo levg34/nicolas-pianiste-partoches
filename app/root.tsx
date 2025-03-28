@@ -24,6 +24,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
     )
 }
 
+export function meta({}: Route.MetaArgs) {
+    return [
+        { title: 'Nicolas Dross - Partoches' },
+        { name: 'description', content: 'Site des partitions de Nicolas Dross, pianiste, enseignant et compositeur' }
+    ]
+}
+
 export default function App() {
     return (
         <Provider>
